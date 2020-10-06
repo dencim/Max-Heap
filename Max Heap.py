@@ -15,6 +15,7 @@ class MaxHeap:
         self.heap = heap
         self.build_max_heap()
         
+    #Builds max heap from any array
     def build_max_heap(self):
         for i in range(int(len(self.heap)/2) -1, -1, -1):
             #print("maxing at ", i)
@@ -26,7 +27,7 @@ class MaxHeap:
         
         i = i+1 #bc indexing from 1
         
-        left = self.left_child(i)
+        left = self.left_child(i) 
         #print("Left ", left)
         right = self.right_child(i)
         #print("right ", right)
@@ -51,10 +52,11 @@ class MaxHeap:
             
             
             self.max_heapify(largest-1)
-    
+    #Returns max item in heap
     def heap_max(self):
         return self.heap[0]
 
+    #Returns, removes, and fixes back into valid heap
     def extract_max(self):
         extracted = self.heap_max()
         
@@ -64,6 +66,7 @@ class MaxHeap:
         
         return extracted
     
+    #Inserts item into heap
     def insert(self, x):
         self.heap.append(x)
         i = len(self.heap)
@@ -74,13 +77,14 @@ class MaxHeap:
             self.heap[i-1] = temp
             i = self.parent(i-1)
     
+    #Prints heap as an array
     def print_as_array(self):
         print(self.heap)
     
+    #Prints heap as tree
     def print_as_tree(self):
-        #change to work
-        for i in self.heap:
-            print(i)    
+         self.printing(1, 0)
+         
     #Helper functions
     def left_child(self, i):
         return 2*i
@@ -88,15 +92,44 @@ class MaxHeap:
         return 2 * i + 1
     def parent(self, i):
         return int(( i  / 2 ))
+    
+    #Helper funtion for printing
+    def printing(self, i, debth) :
+        
+        if len(self.heap) < i:
+            return
+        
+        right = self.right_child(i)  
+        left = self.left_child(i)
+        
+        
+        debth += 1
+        self.printing(right, debth)
+        
+        
+        print("   " * debth, end =" ")
+        print(self.heap[i-1])
+        
+        self.printing(left, debth)
             
 #h = MaxHeap([16,4,10,14,7,9,3,2,8,1])
 h2 = MaxHeap([4,1,3,2,16,9,10,14,8,7])
 h3 = MaxHeap([16,14,10,8,7,9,3,2,4,1])
+h4 = MaxHeap([16,14,10,8,7,3,9,1,4,2])
 #h.print_as_tree()
 #h.max_heapify(1)
 #h.print_as_array()
 #h2.print_as_array()
 #print(h2.extract_max())
-h2.print_as_array()
-h3.insert(15)
-h3.print_as_array()
+#h2.print_as_array()
+#h3.insert(15)
+#h3.print_as_array()
+#h4.print_as_tree()
+'''
+sorted = []
+
+while(h2.heap_max() != None):
+    sorted.append(h2.extract_max())
+print(sorted)
+
+'''
