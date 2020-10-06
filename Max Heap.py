@@ -13,7 +13,7 @@ class MaxHeap:
     def __init__(self, heap=[]):
         #do code for build-max heap here
         self.heap = heap
-        self.build_max_heap()
+        self.build_max_heap() #Auto builds max heap from input array
         
     #Builds max heap from any array
     def build_max_heap(self):
@@ -60,9 +60,10 @@ class MaxHeap:
     def extract_max(self):
         extracted = self.heap_max()
         
-        #Fix heap
-        self.heap[0] = self.heap.pop(-1)
-        self.max_heapify(0)
+        #Fix heap if there is elements to fix
+        if len(self.heap) > 1:
+            self.heap[0] = self.heap.pop(-1)
+            self.max_heapify(0)
         
         return extracted
     
@@ -76,6 +77,15 @@ class MaxHeap:
             self.heap[self.parent(i)-1] = self.heap[i-1]
             self.heap[i-1] = temp
             i = self.parent(i-1)
+            
+    def heap_sort(self):
+        sorted = []
+        
+        for i in range(0, len(self.heap)):
+            sorted.insert(0,self.extract_max())
+        
+        
+        return sorted
     
     #Prints heap as an array
     def print_as_array(self):
@@ -112,24 +122,12 @@ class MaxHeap:
         
         self.printing(left, debth)
             
-#h = MaxHeap([16,4,10,14,7,9,3,2,8,1])
-h2 = MaxHeap([4,1,3,2,16,9,10,14,8,7])
-h3 = MaxHeap([16,14,10,8,7,9,3,2,4,1])
-h4 = MaxHeap([16,14,10,8,7,3,9,1,4,2])
-#h.print_as_tree()
-#h.max_heapify(1)
-#h.print_as_array()
-#h2.print_as_array()
-#print(h2.extract_max())
-#h2.print_as_array()
-#h3.insert(15)
-#h3.print_as_array()
-#h4.print_as_tree()
-'''
-sorted = []
+        
+#Test code
+h = MaxHeap([4,1,3,2,16,9,10,14,8,7])
+print("Tree: ")
+h.print_as_tree()
+print("Array: ")
+h.print_as_array()
+print("Sorted : ", h.heap_sort())
 
-while(h2.heap_max() != None):
-    sorted.append(h2.extract_max())
-print(sorted)
-
-'''
