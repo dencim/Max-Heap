@@ -124,10 +124,39 @@ class MaxHeap:
             
         
 #Test code
+print("TEST 1:\n")
 h = MaxHeap([4,1,3,2,16,9,10,14,8,7])
 print("Tree: ")
 h.print_as_tree()
 print("Array: ")
 h.print_as_array()
 print("Sorted : ", h.heap_sort())
+
+print("\nTEST 2:\n")
+h2 = MaxHeap([16,14,10,8,7,9,3,2,4,1])
+print("Tree: ")
+h2.print_as_tree()
+print("Array: ")
+h2.print_as_array()
+h2.insert(15)
+h2.insert(5)
+h2.insert(35)
+print("Tree: ")
+h2.print_as_tree()
+print("Sorted : ", h2.heap_sort())
+
+print("\nTEST 3:\n")
+h3 = MaxHeap([20,14,58,14,17,89,57,62,55,41])
+print("Tree: ")
+h3.print_as_tree()
+print("Array: ")
+h3.print_as_array()
+h3.insert(15)
+h3.extract_max()
+h3.insert(5)
+h3.insert(35)
+print("Tree: ")
+h3.print_as_tree()
+print("Sorted : ", h3.heap_sort())
+
 
